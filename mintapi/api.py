@@ -213,16 +213,16 @@ def get_web_driver(email, password, headless=False, mfa_method=None,
         chrome_options.add_argument("user-data-dir=%s" % session_path)
 
     driver = Chrome(chrome_options=chrome_options, executable_path="%s" % executable_path)
-    driver.get("https://www.mint.com")
-    driver.implicitly_wait(20)  # seconds
-    try:
-        element = driver.find_element_by_link_text("Log In")
-    except NoSuchElementException:
-        # when user has cookies, a slightly different front page appears
-        driver.implicitly_wait(0)  # seconds
-        element = driver.find_element_by_link_text("LOG IN")
-        driver.implicitly_wait(20)  # seconds
-    element.click()
+    driver.get("https://mint.intuit.com/overview.event")
+    #driver.implicitly_wait(20)  # seconds
+    #try:
+    #    element = driver.find_element_by_xpath("/html/body/div[1]/div/section[1]/header/div/div[3]/a[2]")
+    #except NoSuchElementException:
+    #    # when user has cookies, a slightly different front page appears
+    #    driver.implicitly_wait(0)  # seconds
+    #    element = driver.find_element_by_link_text("LOG IN")
+    #    driver.implicitly_wait(20)  # seconds
+    #element.click()
     time.sleep(1)
     email_input = driver.find_element_by_id("ius-userid")
     # It's possible that the user clicked "remember me" at some point, causing
